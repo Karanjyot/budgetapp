@@ -1,66 +1,83 @@
-// indexed db
-window.indexedDB = window.indexedDB || window.mozIndexedDb || window.webkitIndexedDB || window.msIndexedDB
+// // indexed db
+// window.indexedDB = window.indexedDB || window.mozIndexedDb || window.webkitIndexedDB || window.msIndexedDB
 
-//  Open db and indicate name/version of db
-let request = window.indexedDB.open("BudgetTrackerDB", 1), db, tx, store,index;
+// //  Open db and indicate name/version of db
+// let request = window.indexedDB.open("BudgetTrackerDB", 1), db, tx, store,index;
 
-request.onupgradeneeded = e =>{
-  let db = request.result,
+// request.onupgradeneeded = e =>{
+//   let db = request.result,
 
-  //setup store (store is the structure of our db)
+//   //setup store (store is the structure of our db)
 
-  store = db.createObjectStore("budgetStore", {autoIncrement: true}),
+//   store = db.createObjectStore("budgetStore", {autoIncrement: true}),
 
-  index = store.createIndex("name", "name", {unique: false});
-
-
-}
-// error handler
-request.onerror = e =>{
-  console.log("there was an error:" + e.target.errorCode)
-};
+//   index = store.createIndex("name", "name", {unique: false});
 
 
-//success handler
-
-let nameEl = document.querySelector("#t-name");
-let amountEl = document.querySelector("#t-amount");
-request.onsuccess = e =>{
-  // result of opening db. request comes from variable above.
-  db= request.result
-  tx = db.transaction("budgetStore", "readwrite");
-  store = tx.objectStore("budgetStore");
-  index = store.index("name");
-
-  db.onerror = e =>{
-    console.log("ERROR" + e.target.errorCode)
-  }
-
-let obj = {
-  name: nameEl.value.toString(), value: amountEl.value, date: new Date().toISOString()
-}
-
-  store.add(obj)
+// }
+// // error handler
+// request.onerror = e =>{
+//   console.log("there was an error:" + e.target.errorCode)
+// };
 
 
-  // //retrieve data
+// //success handler
 
-  // let q1 = store.get(1);
-  // let qs = index.get("movie");
+// let nameEl = document.querySelector("#t-name");
+// let amountEl = document.querySelector("#t-amount");
+// request.onsuccess = e =>{
+//   // result of opening db. request comes from variable above.
+//   db= request.result
+//   tx = db.transaction("budgetStore", "readwrite");
+//   store = tx.objectStore("budgetStore");
+//   index = store.index("name");
 
-  // // async so add on success and return result
-  // q1.onsuccess = () =>{
-  //   console.log(q1.result)
-  //   console.log(q1.result.name)
-  // };
+//   db.onerror = e =>{
+//     console.log("ERROR" + e.target.errorCode)
+//   }
 
-  // qs.onsuccess = () =>{
-  //   console.log(qs.result.name)
-  // };
-  tx.oncomplete = ()=>{
-    db.close();
-  }
-}
+// // let obj = {
+// //   name: nameEl.value.toString(), value: amountEl.value, date: new Date().toISOString()
+// // }
+
+// //   store.add(obj)
+
+
+
+//   // //retrieve data
+
+//   // let q1 = store.get(1);
+//   // let qs = index.get("movie");
+
+//   // // async so add on success and return result
+//   // q1.onsuccess = () =>{
+//   //   console.log(q1.result)
+//   //   console.log(q1.result.name)
+//   // };
+
+//   // qs.onsuccess = () =>{
+//   //   console.log(qs.result.name)
+//   // };
+//   tx.oncomplete = ()=>{
+//     db.close();
+//   }
+// }
+
+// function saveRecord(record) {
+//   // create a transaction on the pending db with readwrite access
+//   const transaction = db.transaction(["pending"], "readwrite");
+
+//   // access your pending object store
+//   const store = transaction.objectStore("pending");
+
+//   // add record to your store with add method.
+//   store.add(record);
+// }
+
+
+
+
+
 
 
 let transactions = [];
