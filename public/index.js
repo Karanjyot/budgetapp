@@ -43,20 +43,20 @@ let obj = {
   store.add(obj)
 
 
-  //retrieve data
+  // //retrieve data
 
-  let q1 = store.get(1);
-  let qs = index.get("movie");
+  // let q1 = store.get(1);
+  // let qs = index.get("movie");
 
-  // async so add on success and return result
-  q1.onsuccess = () =>{
-    console.log(q1.result)
-    console.log(q1.result.name)
-  };
+  // // async so add on success and return result
+  // q1.onsuccess = () =>{
+  //   console.log(q1.result)
+  //   console.log(q1.result.name)
+  // };
 
-  qs.onsuccess = () =>{
-    console.log(qs.result.name)
-  };
+  // qs.onsuccess = () =>{
+  //   console.log(qs.result.name)
+  // };
   tx.oncomplete = ()=>{
     db.close();
   }
